@@ -11,10 +11,7 @@ try
         try 
         {
             Console.Clear();
-            Tela.ImprimirTabuleiro(partida.tab);
-            System.Console.WriteLine();
-            System.Console.WriteLine("Turno: " + partida.Turno);
-            System.Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+            Tela.ImprimirPartida(partida);
 
             System.Console.WriteLine();
             System.Console.Write("Origem: ");
