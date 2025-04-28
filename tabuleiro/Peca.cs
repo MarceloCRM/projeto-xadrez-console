@@ -1,7 +1,7 @@
 namespace tabuleiro {
-    class Peca {
+    abstract class Peca {
 
-        public Posicao? Posicao { get; set; }
+        public Posicao Posicao { get; set; }
         public Cor Cor { get; protected set; }
         public int qtdMovimentos { get; protected set; }
         public Tabuleiro Tabuleiro { get; protected set; }
@@ -14,9 +14,12 @@ namespace tabuleiro {
             this.Tabuleiro = tabuleiro;
         }
 
+        
         public void IncrementarQtdMovimentos()
         {
             qtdMovimentos++;
         }
+
+        public abstract bool[,] MovimentosPossiveis();
     }
 }
