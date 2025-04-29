@@ -18,9 +18,8 @@ try
             Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
             partida.ValidarPosicaoDeOrigem(origem);
             bool[,] posicoesPossiveis = partida.tab.Peca(origem).MovimentosPossiveis();
-            Console.Clear();
+            Console.Clear();            
             Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
-
             System.Console.Write("Destino: ");
             Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
             partida.ValidarPosicaoDeDestino(origem, destino);
@@ -32,6 +31,8 @@ try
             System.Console.ReadLine();
         }
     }
+    Console.Clear();
+    Tela.ImprimirPartida(partida);
 
 }
 catch (TabuleiroException e)
