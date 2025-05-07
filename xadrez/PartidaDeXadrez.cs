@@ -1,4 +1,5 @@
 using tabuleiro;
+using xadrez_console;
 
 namespace xadrez
 {
@@ -148,11 +149,7 @@ namespace xadrez
             {
                 if ((p.Cor == Cor.Branca && destino.Linha == 0) || (p.Cor == Cor.Preta && destino.Linha == 7))
                 {
-                    p = tab.RetirarPeca(destino);
-                    Pecas.Remove(p);
-                    Peca dama = new Dama(tab, p.Cor);
-                    tab.ColocarPeca(dama, destino);
-                    Pecas.Add(dama);
+                   PromoverPeca(destino, p);
                 }
             }
 
@@ -329,6 +326,34 @@ namespace xadrez
             tab.ColocarPeca(peca, new PosicaoXadrez(coluna, linha).ToPosicao());
             Pecas.Add(peca);
         }
+
+        private void PromoverPeca(Posicao destino, Peca p)
+        {
+            p = tab.RetirarPeca(destino);
+            Pecas.Remove(p);
+            string s = Tela.LerPecaPromocao();
+            Peca pecaPromover;
+            switch (s)
+            {
+                case "D":
+                    pecaPromover = new Dama(tab, p.Cor);
+                    break;
+                case "T":
+                    pecaPromover = new Torre(tab, p.Cor);
+                    break;
+                case "C":
+                    pecaPromover = new Cavalo(tab, p.Cor);
+                    break;
+                case "B":
+                    pecaPromover = new Bispo(tab, p.Cor);
+                    break;
+                default:
+                    throw new Exception("Erro inesperado!");
+            }
+            tab.ColocarPeca(pecaPromover, destino);
+            Pecas.Add(pecaPromover);
+        }
+
         
         private void ColocarPecas()
         {
@@ -363,7 +388,7 @@ namespace xadrez
             ColocarNovaPeca('d', 7, new Peao(tab, Cor.Preta, this));
             ColocarNovaPeca('e', 7, new Peao(tab, Cor.Preta, this));
             ColocarNovaPeca('f', 7, new Peao(tab, Cor.Preta, this));
-            ColocarNovaPeca('g', 7, new Peao(tab, Cor.Preta, this));
+            ColocarNovaPeca('g', 7, new Peao(tab, Cor.Branca, this));
             ColocarNovaPeca('h', 7, new Peao(tab, Cor.Preta, this));
         }
     }

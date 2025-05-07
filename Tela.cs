@@ -96,7 +96,7 @@ namespace xadrez_console
         {
             try
             {
-                string s = Console.ReadLine();
+                string s = Console.ReadLine().ToLower();
                 char coluna = s[0];
                 int linha = int.Parse(s[1] + "");
                 return new PosicaoXadrez(coluna, linha);
@@ -107,6 +107,23 @@ namespace xadrez_console
             }
             
         }
+
+        public static string LerPecaPromocao()
+        {
+            List<string> pecas = new List<string> { "C", "D", "T", "B" };
+            Console.Write("Escolha peça para promoção (C/D/T/B): ");
+            string input = Console.ReadLine().ToUpper();
+
+            if (pecas.Any(p => p == input))
+            {
+                return input;
+            }
+            else
+            {
+                throw new TabuleiroException("Peça inválida!");
+            }
+        }
+
         public static void ImprimirPeca(Peca peca) 
         {
             if (peca == null)

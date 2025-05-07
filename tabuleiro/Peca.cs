@@ -5,7 +5,7 @@ namespace tabuleiro {
         public Cor Cor { get; protected set; }
         public int qtdMovimentos { get; protected set; }
         public Tabuleiro Tabuleiro { get; protected set; }
-
+    
         public Peca(Tabuleiro tabuleiro, Cor cor)
         {
             this.Posicao = null;
@@ -14,7 +14,6 @@ namespace tabuleiro {
             this.Tabuleiro = tabuleiro;
         }
 
-        
         public void IncrementarQtdMovimentos()
         {
             qtdMovimentos++;
